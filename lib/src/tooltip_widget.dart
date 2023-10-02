@@ -384,7 +384,6 @@ class _ToolTipWidgetState extends State<ToolTipWidget>
               child: Material(
                 type: MaterialType.transparency,
                 child: Container(
-                  color: Colors.red,
                   padding: widget.showArrow
                       ? EdgeInsets.only(
                           top: paddingTop - (isArrowUp ? arrowHeight : 0),
