@@ -348,7 +348,7 @@ class _ToolTipWidgetState extends State<ToolTipWidget>
         contentOffsetMultiplier.clamp(-1.0, 0.0);
 
     var paddingTop = isArrowUp ? 15.0 : 0.0;
-    var paddingBottom = isArrowUp ? 0.0 : 27.0;
+    var paddingBottom = isArrowUp ? 0.0 : 20.0;
 
     if (!widget.showArrow) {
       paddingTop = 10;
@@ -384,6 +384,7 @@ class _ToolTipWidgetState extends State<ToolTipWidget>
               child: Material(
                 type: MaterialType.transparency,
                 child: Container(
+                  color: Colors.red,
                   padding: widget.showArrow
                       ? EdgeInsets.only(
                           top: paddingTop - (isArrowUp ? arrowHeight : 0),
