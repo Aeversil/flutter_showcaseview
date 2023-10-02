@@ -179,6 +179,7 @@ class _MailPageState extends State<MailPage> {
                                 child: Row(
                                   children: <Widget>[
                                     Showcase(
+                                      disableMovingAnimation: true,
                                       parsedContext: context,
                                       key: _one,
                                       description: 'Tap to see menu options',
@@ -226,6 +227,7 @@ class _MailPageState extends State<MailPage> {
                       key: _two,
                       tooltipPadding: const EdgeInsets.fromLTRB(12, 14, 12, 12),
                       titlePadding: const EdgeInsets.only(bottom: 8),
+                      disableMovingAnimation: true,
                       title: 'Profile',
                       description:
                           "Tap to see profile which contains user's name, profile picture, mobile number and country",
