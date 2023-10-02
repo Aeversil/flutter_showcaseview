@@ -50,6 +50,7 @@ class _DetailState extends State<Detail> {
               child: ListView(
                 children: <Widget>[
                   Showcase(
+                    parsedContext: context,
                     key: _one,
                     title: 'Title',
                     description: 'Desc',

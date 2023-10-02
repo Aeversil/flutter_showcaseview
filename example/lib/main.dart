@@ -179,6 +179,7 @@ class _MailPageState extends State<MailPage> {
                                 child: Row(
                                   children: <Widget>[
                                     Showcase(
+                                      parsedContext: context,
                                       key: _one,
                                       description: 'Tap to see menu options',
                                       disableDefaultTargetGestures: true,
@@ -218,8 +219,13 @@ class _MailPageState extends State<MailPage> {
                       ),
                     ),
                     Showcase(
+                      parsedContext: context,
+                      nextButton: true,
+                      skipButton: true,
                       targetPadding: const EdgeInsets.all(5),
                       key: _two,
+                      tooltipPadding: const EdgeInsets.fromLTRB(12, 14, 12, 12),
+                      titlePadding: const EdgeInsets.only(bottom: 8),
                       title: 'Profile',
                       description:
                           "Tap to see profile which contains user's name, profile picture, mobile number and country",
@@ -277,6 +283,7 @@ class _MailPageState extends State<MailPage> {
         ),
       ),
       floatingActionButton: Showcase(
+        parsedContext: context,
         key: _five,
         title: 'Compose Mail',
         description: 'Click here to compose mail',
@@ -315,6 +322,7 @@ class _MailPageState extends State<MailPage> {
       child: Container(
         padding: const EdgeInsets.symmetric(vertical: 8),
         child: Showcase(
+            parsedContext: context,
             key: key,
             description: 'Tap to check mail',
             tooltipPosition: TooltipPosition.top,
@@ -413,6 +421,7 @@ class MailTile extends StatelessWidget {
               children: <Widget>[
                 if (showCaseDetail)
                   Showcase.withWidget(
+                    parsedContext: context,
                     key: showCaseKey!,
                     height: 50,
                     width: 140,

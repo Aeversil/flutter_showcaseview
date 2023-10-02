@@ -101,13 +101,13 @@ class Showcase extends StatefulWidget {
 
   /// Defines background color for tooltip widget.
   ///
-  /// Default to [Colors.white]
+  /// Default to [kcSurfaceHighlightBlack Color(0xff2a2e33)]
   final Color tooltipBackgroundColor;
 
   /// Defines text color of default tooltip when [titleTextStyle] and
   /// [descTextStyle] is not provided.
   ///
-  /// Default to [Colors.black]
+  /// Default to [Colors.white]
   final Color textColor;
 
   /// If [enableAutoScroll] is sets to `true`, this widget will be shown above
@@ -244,6 +244,12 @@ class Showcase extends StatefulWidget {
   /// will still provide a callback.
   final VoidCallback? onBarrierClick;
 
+  final bool? nextButton;
+  final bool? skipButton;
+  final Color? nextButtonColor;
+  final Color? skipButtonColor;
+  final BuildContext parsedContext;
+
   const Showcase({
     required this.key,
     required this.description,
@@ -256,10 +262,15 @@ class Showcase extends StatefulWidget {
     ),
     this.overlayColor = Colors.black45,
     this.overlayOpacity = 0.75,
-    this.titleTextStyle,
-    this.descTextStyle,
-    this.tooltipBackgroundColor = Colors.white,
-    this.textColor = Colors.black,
+    this.titleTextStyle = const TextStyle(
+      fontSize: 17,
+      fontWeight: FontWeight.bold,
+      color: Colors.white,
+    ),
+    this.descTextStyle = const TextStyle(
+        color: Color(0xffb4c1d9), fontSize: 14, fontWeight: FontWeight.w500),
+    this.tooltipBackgroundColor = const Color(0xff2a2e33),
+    this.textColor = Colors.white,
     this.scrollLoadingWidget = const CircularProgressIndicator(
       valueColor: AlwaysStoppedAnimation(Colors.white),
     ),
@@ -288,6 +299,11 @@ class Showcase extends StatefulWidget {
     this.titleTextDirection,
     this.descriptionTextDirection,
     this.onBarrierClick,
+    this.nextButton = false,
+    this.skipButton = false,
+    this.nextButtonColor = const Color(0xff495059),
+    this.skipButtonColor = const Color(0xff495059),
+    required this.parsedContext,
   })  : height = null,
         width = null,
         container = null,
@@ -325,6 +341,11 @@ class Showcase extends StatefulWidget {
     this.disableDefaultTargetGestures = false,
     this.tooltipPosition,
     this.onBarrierClick,
+    this.nextButton,
+    this.skipButton,
+    this.nextButtonColor,
+    this.skipButtonColor,
+    required this.parsedContext,
   })  : showArrow = false,
         onToolTipClick = null,
         scaleAnimationDuration = const Duration(milliseconds: 300),
@@ -541,6 +562,7 @@ class _ShowcaseState extends State<Showcase> {
             disableDefaultChildGestures: widget.disableDefaultTargetGestures,
           ),
           ToolTipWidget(
+            parsedContext: context,
             position: position,
             offset: offset,
             screenSize: screenSize,
@@ -573,6 +595,10 @@ class _ShowcaseState extends State<Showcase> {
             descriptionPadding: widget.descriptionPadding,
             titleTextDirection: widget.titleTextDirection,
             descriptionTextDirection: widget.descriptionTextDirection,
+            nextButton: widget.nextButton,
+            nextButtonColor: widget.nextButtonColor,
+            skipButton: widget.skipButton,
+            skipButtonColor: widget.skipButtonColor,
           ),
         ],
       ],

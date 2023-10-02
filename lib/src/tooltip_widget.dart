@@ -24,6 +24,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 
+import '../showcaseview.dart';
 import 'enum.dart';
 import 'get_position.dart';
 import 'measure_size.dart';
@@ -31,6 +32,7 @@ import 'measure_size.dart';
 const _kDefaultPaddingFromParent = 14.0;
 
 class ToolTipWidget extends StatefulWidget {
+  final BuildContext parsedContext;
   final GetPosition? position;
   final Offset? offset;
   final Size? screenSize;
@@ -61,6 +63,10 @@ class ToolTipWidget extends StatefulWidget {
   final EdgeInsets? descriptionPadding;
   final TextDirection? titleTextDirection;
   final TextDirection? descriptionTextDirection;
+  final bool? nextButton;
+  final Color? nextButtonColor;
+  final bool? skipButton;
+  final Color? skipButtonColor;
 
   const ToolTipWidget({
     Key? key,
@@ -94,6 +100,11 @@ class ToolTipWidget extends StatefulWidget {
     this.descriptionPadding,
     this.titleTextDirection,
     this.descriptionTextDirection,
+    this.nextButton = false,
+    this.nextButtonColor,
+    this.skipButton = false,
+    this.skipButtonColor,
+    required this.parsedContext,
   }) : super(key: key);
 
   @override
@@ -461,6 +472,59 @@ class _ToolTipWidgetState extends State<ToolTipWidget>
                                               ),
                                     ),
                                   ),
+                                  if (widget.skipButton! ||
+                                      widget.nextButton!) ...[
+                                    const SizedBox(height: 24),
+                                    ButtonBar(
+                                      buttonPadding: const EdgeInsets.all(0),
+                                      buttonHeight: 40,
+                                      buttonMinWidth: 90,
+                                      children: [
+                                        if (widget.skipButton!) ...[
+                                          ElevatedButton(
+                                            style: ElevatedButton.styleFrom(
+                                              backgroundColor:
+                                                  widget.skipButtonColor,
+                                            ),
+                                            onPressed: () {
+                                              ShowCaseWidget.of(
+                                                      widget.parsedContext)
+                                                  .dismiss();
+                                            },
+                                            child: const Text(
+                                              'Skip',
+                                              style: TextStyle(
+                                                  color: Colors.white,
+                                                  fontWeight: FontWeight.w500),
+                                            ),
+                                          ),
+                                        ],
+                                        if (widget.skipButton! &&
+                                            widget.nextButton!) ...[
+                                          const SizedBox(width: 12),
+                                        ],
+                                        if (widget.nextButton!) ...[
+                                          ElevatedButton(
+                                            style: ElevatedButton.styleFrom(
+                                              backgroundColor:
+                                                  widget.nextButtonColor,
+                                            ),
+                                            onPressed: () {
+                                              ShowCaseWidget.of(
+                                                      widget.parsedContext)
+                                                  .next();
+                                            },
+                                            child: const Text(
+                                              'Next',
+                                              style: TextStyle(
+                                                  color: Colors.white,
+                                                  fontWeight: FontWeight.w500),
+                                            ),
+                                          ),
+                                        ],
+                                      ],
+                                    ),
+                                  ],
                                 ],
                               ),
                             ),
