@@ -477,7 +477,8 @@ class _ToolTipWidgetState extends State<ToolTipWidget>
                                     ),
                                   ),
                                   if (widget.skipButton! ||
-                                      widget.nextButton!) ...[
+                                      widget.nextButton! ||
+                                      widget.doneButton!) ...[
                                     const SizedBox(height: 24),
                                     ButtonBar(
                                       buttonPadding: const EdgeInsets.all(0),
