@@ -67,6 +67,8 @@ class ToolTipWidget extends StatefulWidget {
   final Color? nextButtonColor;
   final bool? skipButton;
   final Color? skipButtonColor;
+  final bool? doneButton;
+  final Color? donButtonColor;
 
   const ToolTipWidget({
     Key? key,
@@ -104,6 +106,8 @@ class ToolTipWidget extends StatefulWidget {
     this.nextButtonColor,
     this.skipButton = false,
     this.skipButtonColor,
+    this.doneButton = false,
+    this.donButtonColor,
     required this.parsedContext,
   }) : super(key: key);
 
@@ -489,7 +493,7 @@ class _ToolTipWidgetState extends State<ToolTipWidget>
                                             onPressed: () {
                                               ShowCaseWidget.of(
                                                       widget.parsedContext)
-                                                  .dismiss();
+                                                  .skip();
                                             },
                                             child: const Text(
                                               'Skip',
@@ -516,6 +520,25 @@ class _ToolTipWidgetState extends State<ToolTipWidget>
                                             },
                                             child: const Text(
                                               'Next',
+                                              style: TextStyle(
+                                                  color: Colors.white,
+                                                  fontWeight: FontWeight.w500),
+                                            ),
+                                          ),
+                                        ],
+                                        if (widget.doneButton!) ...[
+                                          ElevatedButton(
+                                            style: ElevatedButton.styleFrom(
+                                              backgroundColor:
+                                                  widget.donButtonColor,
+                                            ),
+                                            onPressed: () {
+                                              ShowCaseWidget.of(
+                                                      widget.parsedContext)
+                                                  .skip();
+                                            },
+                                            child: const Text(
+                                              'Done',
                                               style: TextStyle(
                                                   color: Colors.white,
                                                   fontWeight: FontWeight.w500),

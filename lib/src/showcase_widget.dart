@@ -212,6 +212,13 @@ class ShowCaseWidgetState extends State<ShowCaseWidget> {
     }
   }
 
+  void skip() {
+    setState(() {
+      _cleanupAfterSteps();
+      widget.onFinish?.call();
+    });
+  }
+
   /// Dismiss entire showcase view
   void dismiss() {
     if (mounted) setState(_cleanupAfterSteps);

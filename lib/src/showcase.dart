@@ -246,8 +246,10 @@ class Showcase extends StatefulWidget {
 
   final bool? nextButton;
   final bool? skipButton;
+  final bool? doneButton;
   final Color? nextButtonColor;
   final Color? skipButtonColor;
+  final Color? doneButtonColor;
   final BuildContext parsedContext;
 
   const Showcase({
@@ -304,6 +306,8 @@ class Showcase extends StatefulWidget {
     this.nextButtonColor = const Color(0xff495059),
     this.skipButtonColor = const Color(0xff495059),
     required this.parsedContext,
+    this.doneButton = false,
+    this.doneButtonColor,
   })  : height = null,
         width = null,
         container = null,
@@ -346,6 +350,8 @@ class Showcase extends StatefulWidget {
     this.nextButtonColor,
     this.skipButtonColor,
     required this.parsedContext,
+    this.doneButton,
+    this.doneButtonColor,
   })  : showArrow = false,
         onToolTipClick = null,
         scaleAnimationDuration = const Duration(milliseconds: 300),
@@ -599,6 +605,8 @@ class _ShowcaseState extends State<Showcase> {
             nextButtonColor: widget.nextButtonColor,
             skipButton: widget.skipButton,
             skipButtonColor: widget.skipButtonColor,
+            doneButton: widget.doneButton,
+            donButtonColor: widget.doneButtonColor,
           ),
         ],
       ],
