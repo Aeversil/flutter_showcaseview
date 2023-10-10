@@ -235,6 +235,17 @@ class _MailPageState extends State<MailPage> {
                       tooltipBackgroundColor: Theme.of(context).primaryColor,
                       textColor: Colors.white,
                       targetShapeBorder: const CircleBorder(),
+                      customButton: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.blue,
+                        ),
+                        onPressed: () {},
+                        child: const Text(
+                          'Invite',
+                          style: TextStyle(
+                              color: Colors.white, fontWeight: FontWeight.w500),
+                        ),
+                      ),
                       child: Container(
                         padding: const EdgeInsets.all(5),
                         width: 45,

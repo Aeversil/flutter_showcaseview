@@ -247,6 +247,7 @@ class Showcase extends StatefulWidget {
   final bool? nextButton;
   final bool? skipButton;
   final bool? doneButton;
+  final ElevatedButton? customButton;
   final Color? nextButtonColor;
   final Color? skipButtonColor;
   final Color? doneButtonColor;
@@ -308,6 +309,7 @@ class Showcase extends StatefulWidget {
     required this.parsedContext,
     this.doneButton = false,
     this.doneButtonColor,
+    this.customButton,
   })  : height = null,
         width = null,
         container = null,
@@ -352,6 +354,7 @@ class Showcase extends StatefulWidget {
     required this.parsedContext,
     this.doneButton,
     this.doneButtonColor,
+    this.customButton,
   })  : showArrow = false,
         onToolTipClick = null,
         scaleAnimationDuration = const Duration(milliseconds: 300),
@@ -606,7 +609,8 @@ class _ShowcaseState extends State<Showcase> {
             skipButton: widget.skipButton,
             skipButtonColor: widget.skipButtonColor,
             doneButton: widget.doneButton,
-            donButtonColor: widget.doneButtonColor,
+            doneButtonColor: widget.doneButtonColor,
+            customButton: widget.customButton,
           ),
         ],
       ],

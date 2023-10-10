@@ -68,7 +68,8 @@ class ToolTipWidget extends StatefulWidget {
   final bool? skipButton;
   final Color? skipButtonColor;
   final bool? doneButton;
-  final Color? donButtonColor;
+  final Color? doneButtonColor;
+  final ElevatedButton? customButton;
 
   const ToolTipWidget({
     Key? key,
@@ -107,8 +108,9 @@ class ToolTipWidget extends StatefulWidget {
     this.skipButton = false,
     this.skipButtonColor,
     this.doneButton = false,
-    this.donButtonColor,
+    this.doneButtonColor,
     required this.parsedContext,
+    this.customButton,
   }) : super(key: key);
 
   @override
@@ -478,7 +480,8 @@ class _ToolTipWidgetState extends State<ToolTipWidget>
                                   ),
                                   if (widget.skipButton! ||
                                       widget.nextButton! ||
-                                      widget.doneButton!) ...[
+                                      widget.doneButton! ||
+                                      widget.customButton != null) ...[
                                     const SizedBox(height: 24),
                                     ButtonBar(
                                       buttonPadding: const EdgeInsets.all(0),
@@ -491,11 +494,9 @@ class _ToolTipWidgetState extends State<ToolTipWidget>
                                               backgroundColor:
                                                   widget.skipButtonColor,
                                             ),
-                                            onPressed: () {
-                                              ShowCaseWidget.of(
-                                                      widget.parsedContext)
-                                                  .skip();
-                                            },
+                                            onPressed: () => ShowCaseWidget.of(
+                                                    widget.parsedContext)
+                                                .skip(),
                                             child: const Text(
                                               'Skip',
                                               style: TextStyle(
@@ -503,10 +504,16 @@ class _ToolTipWidgetState extends State<ToolTipWidget>
                                                   fontWeight: FontWeight.w500),
                                             ),
                                           ),
+                                          if (widget.customButton != null ||
+                                              widget.nextButton! ||
+                                              widget.doneButton!)
+                                            const SizedBox(width: 12),
                                         ],
-                                        if (widget.skipButton! &&
-                                            widget.nextButton!) ...[
-                                          const SizedBox(width: 12),
+                                        if (widget.customButton != null) ...[
+                                          widget.customButton!,
+                                          if (widget.nextButton! ||
+                                              widget.doneButton!)
+                                            const SizedBox(width: 12),
                                         ],
                                         if (widget.nextButton!) ...[
                                           ElevatedButton(
@@ -514,11 +521,9 @@ class _ToolTipWidgetState extends State<ToolTipWidget>
                                               backgroundColor:
                                                   widget.nextButtonColor,
                                             ),
-                                            onPressed: () {
-                                              ShowCaseWidget.of(
-                                                      widget.parsedContext)
-                                                  .next();
-                                            },
+                                            onPressed: () => ShowCaseWidget.of(
+                                                    widget.parsedContext)
+                                                .next(),
                                             child: const Text(
                                               'Next',
                                               style: TextStyle(
@@ -531,13 +536,11 @@ class _ToolTipWidgetState extends State<ToolTipWidget>
                                           ElevatedButton(
                                             style: ElevatedButton.styleFrom(
                                               backgroundColor:
-                                                  widget.donButtonColor,
+                                                  widget.doneButtonColor,
                                             ),
-                                            onPressed: () {
-                                              ShowCaseWidget.of(
-                                                      widget.parsedContext)
-                                                  .skip();
-                                            },
+                                            onPressed: () => ShowCaseWidget.of(
+                                                    widget.parsedContext)
+                                                .skip(),
                                             child: const Text(
                                               'Done',
                                               style: TextStyle(
